@@ -11,15 +11,16 @@ function writePassword() {
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", generatePassword);
 
 //DOM Elements
+var lengthEL = prompt("Length of password?")
+var uppercaseEL = confirm("Include Uppercase Letters?")
+var lowercaseEL = confirm("Include lowercase letters?")
+var numbersEL = confirm("Include Numbers?")
+var symbolsEL = confirm("Include Symbols?")
+
 var resultEL = document.getElementById('result')
-var lengthEL = document.getElementById('length')
-var uppercaseEL = document.getElementById('uppercase')
-var lowercaseEL = document.getElementById('lowercase')
-var numbersEL = document.getElementById('numbers')
-var symbolsEL = document.getElementById('symbols')
 var generateEL = document.getElementById('generate')
 var clipboardEL = document.getElementById('clipboard')
 
@@ -29,7 +30,9 @@ var randomFunc = {
   number: getRandomNumber,
   symbol: getRandomSymbol
 };
+
 //generate event listen
+
 generateEL.addEventListener("click", () => {
   var length = parseInt(lengthEl.value);
   var hasLower = lowercaseEL.checked;
@@ -37,7 +40,7 @@ generateEL.addEventListener("click", () => {
   var hasNumber = numbersEL.checked;
   var hasSymbol = symbolsEL.checked;
 
-  resultEL.innertext = generatePasswork(hasLower, hasUpper, hasNumber, hasSymbol, length);
+  resultEL.innertext = generatePassword(hasLower, hasUpper, hasNumber, hasSymbol, length);
 });
 
 //generate password function
@@ -57,12 +60,12 @@ function generatePassword(lower, upper, number, symbol, length) {
 
       generatedPasword += radnomFunc [funcName]
     });
+  
   }
 
-  var finalPassword = generatedPassword.slice(0, length)
-
+  var finalPassword = generatedPassword.slice(0, length);
+  document.getElementById("#password").innerHTML = finalPassword;
 }
-
 
 //generator functions
 
